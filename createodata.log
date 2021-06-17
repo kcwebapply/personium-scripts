@@ -1,0 +1,54 @@
+# EntityType(テーブル)作成
+
+curl "http://localhost/testcell/userbox/ODataContents/\$metadata/EntityType" \
+-X POST -i \
+-d '{ "Name":"profile"}' \
+-H "Accept:application/json" -H "Authorization:Bearer personiumio"
+
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Thu, 17 Jun 2021 05:03:09 GMT
+Content-Type: application/json
+Content-Length: 291
+Connection: keep-alive
+Location: http://localhost/testcell/userbox/ODataContents/$metadata/EntityType('profile')
+DataServiceVersion: 2.0
+ETag: W/"1-1623906187184"
+X-Personium-Version: 1.7.21
+
+{"d":{"results":{"__metadata":{"uri":"http:\/\/localhost\/testcell\/userbox\/ODataContents\/$metadata\/EntityType('profile')","etag":"W\/\"1-1623906187184\"","type":"ODataSvcSchema.EntityType"},"Name":"profile","__published":"\/Date(1623906187184)\/","__updated":"\/Date(1623906187184)\/"}}}
+
+# データ登録
+
+curl "http://localhost/testcell/userbox/ODataContents/profile" \
+> -X POST -i \
+> -d '{"name": "kc"}' \
+> -H "Accept:application/json" -H "Authorization:Bearer personiumio"
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Thu, 17 Jun 2021 05:05:29 GMT
+Content-Type: application/json
+Content-Length: 330
+Connection: keep-alive
+Location: http://localhost/testcell/userbox/ODataContents/profile('455a7d5569a540e9a15e1349377be8bc')
+DataServiceVersion: 2.0
+ETag: W/"1-1623906327706"
+X-Personium-Version: 1.7.21
+
+{"d":{"results":{"__metadata":{"uri":"http:\/\/localhost\/testcell\/userbox\/ODataContents\/profile('455a7d5569a540e9a15e1349377be8bc')","etag":"W\/\"1-1623906327706\"","type":"UserData.profile"},"__id":"455a7d5569a540e9a15e1349377be8bc","__published":"\/Date(1623906327706)\/","__updated":"\/Date(1623906327706)\/","name":"kc"}}}
+
+# データ参照
+
+curl "http://localhost/testcell/userbox/ODataContents/profile" \
+> -X GET -i \
+> -H "Accept:application/json" -H "Authorization:Bearer personiumio"
+HTTP/1.1 200
+Server: nginx/1.14.2
+Date: Thu, 17 Jun 2021 05:07:55 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 332
+Connection: keep-alive
+DataServiceVersion: 2.0
+X-Personium-Version: 1.7.21
+
+{"d":{"results":[{"__metadata":{"uri":"http:\/\/localhost\/testcell\/userbox\/ODataContents\/profile('455a7d5569a540e9a15e1349377be8bc')","etag":"W\/\"1-1623906327706\"","type":"UserData.profile"},"__id":"455a7d5569a540e9a15e1349377be8bc","__published":"\/Date(1623906327706)\/","__updated":"\/Date(1623906327706)\/","name":"kc"}]}}

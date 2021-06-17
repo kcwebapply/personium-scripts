@@ -47,3 +47,9 @@ X-Personium-Version: 1.7.21
         </propstat>
     </response>
 </multistatus>
+
+
+curl "http://localhost/testcell2/__token" \
+-X POST -i \
+-d "grant_type=password&username=user2&password=password2" \
+-H "Content-Type: application/x-www-form-urlencoded"

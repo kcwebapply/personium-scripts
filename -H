@@ -1,0 +1,9 @@
+HTTP/1.1 405 
+Server: nginx/1.14.2
+Date: Thu, 17 Jun 2021 04:34:44 GMT
+Content-Type: application/json
+Content-Length: 78
+Connection: keep-alive
+X-Personium-Version: 1.7.21
+
+{"code":"PR405-MC-0001","message":{"lang":"en","value":"Method not allowed."}}
