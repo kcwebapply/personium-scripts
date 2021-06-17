@@ -1,0 +1,122 @@
+```
+wadakeishinoMacBook-Pro:personium wadakeishi$ git clone https://github.com/personium/personium-docker
+
+wadakeishinoMacBook-Pro:personium wadakeishi$ cd personium-docker 
+wadakeishinoMacBook-Pro:personium-docker wadakeishi$ docker-compose build
+
+wadakeishinoMacBook-Pro:personium-docker wadakeishi$ docker-compose up -d
+Creating network "personium-docker_backend" with the default driver
+Creating network "personium-docker_mq" with the default driver
+...
+...
+...
+Status: Downloaded newer image for rmohr/activemq:5.15.9
+Creating personium-docker_elasticsearch_1 ... done
+Creating personium-docker_activemq_1      ... done
+Creating personium-docker_personium_1     ... done
+Creating personium-docker_nginx_1         ... done
+
+
+wadakeishinoMacBook-Pro:personium-docker wadakeishi$ ./init.sh
+
+
+......
+X-Personium-Version: 1.7.21
+
+
+status:204'
+++ grep status:
++ RESPONSE_CODE=status:204
++ '[' status:204 '!=' status:204 ']'
++ echo unitadmin_cell_url=http://localhost/unitadmin/
++ echo unitadmin_account=unitadmin
++ echo unitadmin_password=AArvtCxhCGgjAHyx
+```
+
+## セル作成
+
+wadakeishinoMacBook-Pro:personium-docker wadakeishi$ sh create_cell.sh testcell
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   256  100   236  100    20    360     30 --:--:-- --:--:-- --:--:--   390
+HTTP/1.1 100 Continue
+
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Mon, 14 Jun 2021 08:05:37 GMT
+Content-Length: 0
+Connection: keep-alive
+ETag: "1-1623657937517"
+X-Personium-Version: 1.7.21
+
+HTTP/1.1 202
+Server: nginx/1.14.2
+Date: Mon, 14 Jun 2021 08:05:37 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: http://localhost/testcell/__import
+X-Personium-Version: 1.7.21
+
+Creating cell succeeded!
+Cell URL: http://localhost/testcell/
+
+
+# box作成
+
+sh createbox.sh
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Tue, 15 Jun 2021 13:40:19 GMT
+Content-Type: application/json
+Content-Length: 256
+Connection: keep-alive
+Location: http://localhost/testcell/__ctl/Box('userbox')
+DataServiceVersion: 2.0
+ETag: W/"1-1623764419171"
+X-Personium-Version: 1.7.21
+
+{"d":{"results":{"__metadata":{"uri":"http:\/\/localhost\/testcell\/__ctl\/Box('userbox')","etag":"W\/\"1-1623764419171\"","type":"CellCtl.Box"},"Name":"userbox","Schema":null,"__published":"\/Date(1623764419171)\/","__updated":"\/Date(1623764419171)\/"}}}HTTP/1.1 404
+Server: nginx/1.14.2
+Date: Tue, 15 Jun 2021 13:40:19 GMT
+Content-Type: application/json
+Content-Length: 74
+Connection: keep-alive
+X-Personium-Version: 1.7.21
+
+{"code":"PR404-DV-0003","message":{"lang":"en","value":"Cell not found."}}HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Tue, 15 Jun 2021 13:40:19 GMT
+Content-Length: 0
+Connection: keep-alive
+ETag: "1-1623764419976"
+X-Personium-Version: 1.7.21
+
+
+status:201
+HTTP/1.1 207
+Server: nginx/1.14.2
+Date: Tue, 15 Jun 2021 13:40:20 GMT
+Content-Type: application/xml
+Content-Length: 687
+Connection: keep-alive
+ETag: "1-1623764419976"
+X-Personium-Version: 1.7.21
+
+<multistatus xmlns="DAV:">
+    <response>
+        <href>http://localhost/testcell/userbox/ODataContents</href>
+        <propstat>
+            <prop>
+                <creationdate>2021-06-15T13:40:19.976+0000</creationdate>
+                <getlastmodified>Tue, 15 Jun 2021 13:40:19 GMT</getlastmodified>
+                <resourcetype>
+                    <collection/>
+                    <p:odata xmlns:p="urn:x-personium:xmlns"/>
+                </resourcetype>
+                <acl xml:base="http://localhost/testcell/__role/userbox/" xmlns:p="urn:x-personium:xmlns"/>
+            </prop>
+            <status>HTTP/1.1 200 OK</status>
+        </propstat>
+    </response>
+</multistatus>
+status:207

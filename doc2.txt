@@ -1,0 +1,31 @@
+wadakeishinoMacBook-Pro:personium wadakeishi$ curl "http://localhost/testcell2/__ctl/Box" \
+> -X POST -i \
+> -d "{\"Name\":\"userbox2\"}" \
+> -H "Accept:application/json" -H "Authorization:Bearer personiumio"
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Wed, 16 Jun 2021 05:30:37 GMT
+Content-Type: application/json
+Content-Length: 259
+Connection: keep-alive
+Location: http://localhost/testcell2/__ctl/Box('userbox2')
+DataServiceVersion: 2.0
+ETag: W/"1-1623821437053"
+X-Personium-Version: 1.7.21
+
+{"d":{"results":{"__metadata":{"uri":"http:\/\/localhost\/testcell2\/__ctl\/Box('userbox2')","etag":"W\/\"1-1623821437053\"","type":"CellCtl.Box"},"Name":"userbox2","Schema":null,"__published":"\/Date(1623821437053)\/","__updated":"\/Date(1623821437053)\/"}}}wadakeishinoMacBook-Pro:personium 
+
+
+wadakeishinoMacBook-Pro:personium wadakeishi$ curl "http://localhost/testcell2/userbox2/WebDavContents" \
+> -X MKCOL -i \
+> -d "<?xml version=\"1.0\" encoding=\"utf-8\"?><D:mkcol xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/></D:resourcetype></D:prop></D:set></D:mkcol>" \
+> -H "Accept:application/json" -H "Authorization:Bearer personiumio"
+HTTP/1.1 201
+Server: nginx/1.14.2
+Date: Wed, 16 Jun 2021 05:30:56 GMT
+Content-Length: 0
+Connection: keep-alive
+ETag: "1-1623821456703"
+X-Personium-Version: 1.7.21
+
+

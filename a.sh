@@ -1,0 +1,1 @@
+curl -w "\nstatus:%{http_code}\n" "http://localhost/__ctl/Cell" -X GET -H "Authorization: Bearer personiumio" -k -i -s
